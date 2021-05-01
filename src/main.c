@@ -20,10 +20,15 @@ void *writer(void *arg)
 	int tid_w = *(int *)arg;
 	for (i = 0; i < num_loops; i++)
 	{
+		// acquire the writelock
 		rwlock_acquire_writelock(&lock);
+
+		// critical section
 		value++;
 		list_insert(value);
 		printf("%-4d %-10s %-20s %8d\n", tid_w, "Writer", "insert to front", value);
+
+		// release the writelock
 		rwlock_release_writelock(&lock);
 	}
 	return NULL;
@@ -35,9 +40,14 @@ void *reader(void *arg)
 	int tid_r = *(int *)arg;
 	for (i = 0; i < num_loops; i++)
 	{
+		// acquire the readlock
 		rwlock_acquire_readlock(&lock);
+
+		// critical section
 		int sum = list_get_sum();
 		printf("%-4d %-10s %-20s %8d\n", tid_r, "Reader", "get sum of elements", sum);
+
+		// release the readlock
 		rwlock_release_readlock(&lock);
 	}
 	return NULL;
