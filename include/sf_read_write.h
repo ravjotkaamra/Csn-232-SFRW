@@ -8,7 +8,7 @@ typedef struct __rwlock_t
     int readers;
     sem_t roomEmpty; // allow ONE writer/MANY readers
     sem_t turnstile; // prevents starvation of writers
-    sem_t lock;      // binary semaphore for accessing readers variable
+    sem_t mutex;     // binary semaphore for accessing readers count
 
 } rwlock_t;
 
