@@ -316,6 +316,10 @@ void *reader(void *arg)
 }
 ```
 
+## References
+
+Arpaci-Dusseau, R.H. and Arpaci-Dusseau, A.C., 2018. Operating systems: Three easy pieces. Arpaci-Dusseau Books LLC.
+
 ## License
 
 ```
